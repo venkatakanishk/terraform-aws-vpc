@@ -116,10 +116,10 @@ resource "aws_nat_gateway" "this" {
 resource "aws_route" "private" {
   route_table_id            = aws_route_table.private.id
   destination_cidr_block    = "0.0.0.0/0" # this is routing to route 0.0.0.0/0 through nat gateway
-  nat_gateway_id = aws_internet_gateway.this
+  nat_gateway_id = aws_nat_gateway.this
 }
 resource "aws_route" "database" {
   route_table_id            = aws_route_table.database.id
   destination_cidr_block    = "0.0.0.0/0" # this is routing to route 0.0.0.0/0 through nat gateway
-  nat_gateway_id = aws_internet_gateway.this
+  nat_gateway_id = aws_nat_gateway.this
 }
